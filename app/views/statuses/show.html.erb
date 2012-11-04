@@ -2,14 +2,13 @@
 
 <p>
   <b>Name:</b>
-  <%= @status.name %>
+  <%= @status.user.profil_name %>
 </p>
 
 <p>
   <b>Content:</b>
   <%= @status.content %>
 </p>
-
 
 <%= link_to 'Edit', edit_status_path(@status) %> |
 <%= link_to 'Back', statuses_path %>

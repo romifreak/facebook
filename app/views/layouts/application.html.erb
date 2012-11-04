@@ -13,30 +13,59 @@
     <div class="span2">
       <!--Sidebar content-->
     </div>
-    <div class="span10">
-<body>
+<div class="span8">
+  <body>
+    <div class="navbar navbar-fixed-top">
+ 	    <div class="navbar-inner">
 
- <div class="navbar navbar-fixed-top">
- 	<div class="navbar-inner">
- 		<div class ="container">
- 			<p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-    		<a class="brand" <%= link_to "hazebook.", statuses_path %>
-    			<ul class="nav">
-    				<li><%= link_to "add post.", new_status_path %></li>
-	      			<li><a href="#">go4it.</a></li>    				
-	      			<li><%= link_to "signup.", new_user_registration_path %></li>
-	      			<li><%= link_to "logout.", destroy_user_session_path, :method => :delete %></li>
+ 		   <div class ="container">
+ 			
+    		<a class="brand" <%= link_to "haze.", statuses_path %>
+    			
+          <% if user_signed_in? %>
+          <ul class="nav pull-left">
+            
+            <li><%= link_to "add post.", new_status_path %>
+            </li>
+
+            </ul>
+
+            <ul class="nav pull-right">            
+            <li><%= link_to current_user.profil_name+".", profil_path %></li>
+         		<li><%= link_to "logout.", logout_path%></li>
+
+            <% else %>
+            
+            <ul class="nav pull-right">          
+              <li><%= link_to "signup.", register_path %></li>
+              <li><%= link_to "login.", login_path %></li>
+            </ul>
+
+            <% end %>
 
 	    		</ul>
+
   			</div>
   		</div>
 	</div>
 
-<%= yield %>
+          <div class="container">
+            <% if flash.each do |type, message| %>
+            <div class="alert <%= flash_class type %>">
+            <button class="close" data-dismiss="alert">x</button>
+            <%= message %>
 
-</body>
-</div>
+          </div>
+
+
+          <% end %>
+
+          <% end %>
+
+        <%= yield %>
+
+      </body>
+    </div>
   </div>
 </div>
 </html>
